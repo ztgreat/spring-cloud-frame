@@ -1,14 +1,14 @@
 package com.github.ztgreat.eureka.client.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/hello")
 public class HelloController {
 
-    @RequestMapping("/hello")
-    public String home() {
-        return "Hello world";
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String hello(@RequestParam(value = "name") String name) {
+        return "Hello world "+name;
     }
 
 }
