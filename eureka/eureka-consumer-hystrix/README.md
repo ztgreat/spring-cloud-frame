@@ -2,4 +2,4 @@
 
 结合 eureka-server,eureka-client
 
-网上版本很多，建议阅读官方文档
+使用 Hystrix 预防服务雪崩

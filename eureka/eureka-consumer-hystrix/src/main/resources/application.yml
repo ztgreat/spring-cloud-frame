@@ -1,8 +1,12 @@
 spring:
   application:
-    name: eureka-consumer
+    name: eureka-consumer-feign-hystrix
 server:
-  port: 8082
+  port: 8083
+
+feign:
+  hystrix:
+    enabled: true
 
 eureka:
   client:

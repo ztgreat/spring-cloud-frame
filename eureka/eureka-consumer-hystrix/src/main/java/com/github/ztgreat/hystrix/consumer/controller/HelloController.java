@@ -1,6 +1,6 @@
-package com.github.ztgreat.consumer.controller;
+package com.github.ztgreat.hystrix.consumer.controller;
 
-import com.github.ztgreat.consumer.service.HelloHystrixService;
+import com.github.ztgreat.hystrix.consumer.service.HelloHystrixService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
