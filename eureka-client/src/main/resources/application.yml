@@ -1,5 +1,11 @@
 eureka:
+  instance:
+    hostname: localhost
+    #statusPageUrlPath: http://${eureka.instance.hostname}:${server.port}/info
+    #healthCheckUrlPath: http://${eureka.instance.hostname}:${server.port}/health
   client:
+    healthcheck:
+      enabled: true
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
 spring:
