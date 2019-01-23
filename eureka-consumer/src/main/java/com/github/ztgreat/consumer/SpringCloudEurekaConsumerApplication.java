@@ -1,15 +1,17 @@
-package com.github.ztgreat.eureka.client;
+package com.github.ztgreat.consumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableEurekaClient
- public class SpringCloudEurekaClientApplication {
+@EnableDiscoveryClient
+@EnableFeignClients
+public class SpringCloudEurekaConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringCloudEurekaClientApplication.class, args);
+        SpringApplication.run(SpringCloudEurekaConsumerApplication.class, args);
     }
 
 }
