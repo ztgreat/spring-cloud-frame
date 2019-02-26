@@ -1,12 +1,11 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ztgreat/springcloud-learning # 配置git仓库的地址
+          search-paths: config-repo # git仓库地址下的相对地址，可以配置多个，用,分割。
 server:
-  port: 8080
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    # 是否向 Eureka 注册服务。该应用为服务注册中心，不需要自注册，设置为 false
-    register-with-eureka: false
-
-    fetch-registry: false
-    serviceUrl:
-       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  port: 12000
