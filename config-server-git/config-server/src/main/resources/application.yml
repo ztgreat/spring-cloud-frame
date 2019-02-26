@@ -1,0 +1,12 @@
+server:
+  port: 8080
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否向 Eureka 注册服务。该应用为服务注册中心，不需要自注册，设置为 false
+    register-with-eureka: false
+
+    fetch-registry: false
+    serviceUrl:
+       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
