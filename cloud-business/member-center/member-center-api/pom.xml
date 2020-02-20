@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.mall</groupId>
-        <artifactId>mall-business</artifactId>
+        <artifactId>member-center</artifactId>
         <version>1.5.0</version>
     </parent>
-    <artifactId>member-center</artifactId>
+    <artifactId>member-center-api</artifactId>
     <description>会员中心</description>
 
     <build>

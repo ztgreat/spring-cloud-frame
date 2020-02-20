@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.mall</groupId>
-		<artifactId>mallcloud</artifactId>
+		<artifactId>mall-uaa</artifactId>
 		<version>1.5.0</version>
 	</parent>
-	<artifactId>mall-uaa</artifactId>
+	<artifactId>mall-uaa-api</artifactId>
 	<description>认证中心</description>
 
 	<build>
