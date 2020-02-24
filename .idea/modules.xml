@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/member-center.iml" filepath="$PROJECT_DIR$/member-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/member-center/member-center.iml" filepath="$PROJECT_DIR$/member-center/member-center.iml" />
     </modules>
   </component>
 </project>
