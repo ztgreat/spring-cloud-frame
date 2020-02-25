@@ -1,18 +1,19 @@
 package com.cloud.gateway.aop;
 
+import cn.hutool.core.util.ArrayUtil;
+import cn.hutool.core.util.StrUtil;
 import com.cloud.gateway.domain.dto.ReturnData;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.ArrayUtils;
-import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestHeader;
 
@@ -30,7 +31,7 @@ public class JwtCheckAop {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Pointcut("@annotation(com.lzx.gateway.annotation.JwtCheck)")
+    @Pointcut("@annotation(com.cloud.gateway.annotation.JwtCheck)")
     private void apiAop() {
 
     }
@@ -61,7 +62,7 @@ public class JwtCheckAop {
                 if (a instanceof RequestHeader) {
                     RequestHeader requestHeader = (RequestHeader) a;
                     if ("Authorization".equals(requestHeader.value())) {
-                        token = (String) args[ArrayUtils.indexOf(parameterAnnotationArray, annotations)];
+                        token = (String) args[ArrayUtil.indexOf(parameterAnnotationArray, annotations)];
                     }
                 }
             }
@@ -70,7 +71,7 @@ public class JwtCheckAop {
             a -> end
          */
 
-        if (StringUtils.isBlank(token)) {
+        if (StrUtil.isBlank(token)) {
             //没有token
             return authErro("请登陆");
         } else {
@@ -100,7 +101,7 @@ public class JwtCheckAop {
      * @return
      */
     private Object authErro(String mess) {
-        ReturnData<String> returnData = new ReturnData<>(org.apache.http.HttpStatus.SC_UNAUTHORIZED, mess, mess);
+        ReturnData<String> returnData = new ReturnData<>(HttpStatus.UNAUTHORIZED.value(), mess, mess);
         return returnData;
     }
 

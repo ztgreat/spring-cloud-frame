@@ -7,8 +7,8 @@ import com.cloud.gateway.domain.dto.UserDTO;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -67,7 +67,7 @@ public class AuthController {
                 break;
             }
         }
-        return new ReturnData<String>(HttpStatus.SC_OK, "认证成功", jwt);
+        return new ReturnData<String>(HttpStatus.OK.value(), "认证成功", jwt);
     }
 
     /**
@@ -75,7 +75,7 @@ public class AuthController {
      */
     @GetMapping("/unauthorized")
     public ReturnData<String> unauthorized() {
-        return new ReturnData<String>(HttpStatus.SC_UNAUTHORIZED, "未认证,请重新登陆", null);
+        return new ReturnData<String>(HttpStatus.UNAUTHORIZED.value(), "未认证,请重新登陆", null);
     }
 
     /**
@@ -87,7 +87,7 @@ public class AuthController {
     @JwtCheck
     public ReturnData<String> testJwtCheck(@RequestHeader("Authorization") String token, @RequestParam("name") @Valid String name) {
 
-        return new ReturnData<String>(HttpStatus.SC_OK, "请求成功咯", "请求成功咯" + name);
+        return new ReturnData<String>(HttpStatus.OK.value(), "请求成功咯", "请求成功咯" + name);
 
     }
 }

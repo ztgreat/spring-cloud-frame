@@ -1,5 +1,6 @@
 package com.cloud.gateway.filter;
 
+import cn.hutool.core.util.StrUtil;
 import com.cloud.gateway.domain.dto.ReturnData;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -8,7 +9,6 @@ import io.jsonwebtoken.ExpiredJwtException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
@@ -62,7 +62,7 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
         //获取token
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
         ServerHttpResponse resp = exchange.getResponse();
-        if (StringUtils.isBlank(token)) {
+        if (StrUtil.isBlank(token)) {
             //没有token
             return authErro(resp, "请登陆");
         } else {
@@ -94,7 +94,7 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
     private Mono<Void> authErro(ServerHttpResponse resp, String mess) {
         resp.setStatusCode(HttpStatus.UNAUTHORIZED);
         resp.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
-        ReturnData<String> returnData = new ReturnData<>(org.apache.http.HttpStatus.SC_UNAUTHORIZED, mess, mess);
+        ReturnData<String> returnData = new ReturnData<>(HttpStatus.UNAUTHORIZED.value(), mess, mess);
         String returnStr = "";
         try {
             returnStr = objectMapper.writeValueAsString(returnData);

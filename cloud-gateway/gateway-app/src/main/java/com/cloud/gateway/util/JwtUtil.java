@@ -1,5 +1,6 @@
 package com.cloud.gateway.util;
 
+import cn.hutool.core.codec.Base64;
 import com.cloud.gateway.domain.JwtModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
@@ -7,7 +8,6 @@ import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -30,7 +30,7 @@ public class JwtUtil {
      * @return
      */
     public static SecretKey generalKey() {
-        byte[] encodedKey = Base64.decodeBase64(KEY);
+        byte[] encodedKey = Base64.decode(KEY);
         SecretKeySpec key = new SecretKeySpec(encodedKey, 0, encodedKey.length, "AES");
 
         return key;
