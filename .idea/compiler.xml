@@ -7,10 +7,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-gateway" />
+        <module name="gateway" />
+        <module name="gateway-admin" />
+        <module name="gateway-app" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="cloud-gateway" target="1.8" />
+      <module name="cloud-gateway" target="1.5" />
+      <module name="gateway" target="1.5" />
+      <module name="gateway-admin" target="1.5" />
+      <module name="gateway-app" target="1.5" />
       <module name="member-center" target="1.5" />
     </bytecodeTargetLevel>
   </component>

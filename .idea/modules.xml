@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/gateway-admin/gateway-admin.iml" filepath="$PROJECT_DIR$/cloud-gateway/gateway-admin/gateway-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/gateway-app/gateway-app.iml" filepath="$PROJECT_DIR$/cloud-gateway/gateway-app/gateway-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/member-center/member-center.iml" filepath="$PROJECT_DIR$/member-center/member-center.iml" />
     </modules>
   </component>
