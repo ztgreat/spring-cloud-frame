@@ -22,11 +22,13 @@
 hs_err_pid*
 
 .idea
+.idea/*
 *.iml
 target/
 nohub.sh
 nohup.out
 
 generated/*
+
 
 *.versionsBackup
