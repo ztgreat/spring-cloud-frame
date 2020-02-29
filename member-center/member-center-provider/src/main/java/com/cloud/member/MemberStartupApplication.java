@@ -8,7 +8,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-//@NacosPropertySource(dataId = "showyu-member-center", autoRefreshed = true)
 public class MemberStartupApplication {
 
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package com.cloud.order.service.impl;
 
+import com.cloud.member.dto.Member;
 import com.cloud.order.remote.MemberRemote;
 import com.cloud.order.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,9 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public String hello(String message) {
-        return memberRemote.hello(message);
+    public Member hello(String message) {
+        Member member = new Member();
+        member.setName(message);
+        return memberRemote.hello(member);
     }
 }

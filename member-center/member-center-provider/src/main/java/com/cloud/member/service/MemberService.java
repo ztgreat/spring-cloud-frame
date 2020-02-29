@@ -1,7 +1,9 @@
 package com.cloud.member.service;
 
+import com.cloud.member.dto.Member;
+
 public interface MemberService {
 
 
-    String hello(String message);
+    Member hello(String message);
 }

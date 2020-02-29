@@ -1,9 +1,11 @@
 package com.cloud.order.service;
 
+import com.cloud.member.dto.Member;
+
 public interface OrderService {
 
 
-    String hello(String message);
+    Member hello(String message);
 
 
 }

@@ -1,5 +1,6 @@
 package com.cloud.order.remote.impl;
 
+import com.cloud.member.dto.Member;
 import com.cloud.order.remote.MemberRemote;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,8 @@ public class MemberRemoteFallbackImpl implements MemberRemote {
 
 
     @Override
-    public String hello(String message) {
-        return "fail";
+    public Member hello(Member message) {
+        message.setName("fail");
+        return message;
     }
 }
