@@ -7,7 +7,6 @@
         <artifactId>member-center</artifactId>
         <version>1.0.0</version>
     </parent>
-
     <artifactId>member-center-api</artifactId>
     <packaging>jar</packaging>
 
