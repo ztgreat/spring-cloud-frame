@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <property resource="application.properties"/>
+
+    <!-- 文件保存时间10天 -->
+    <property name="maxHistory" value="10"/>
+    <property name="filePath" value="logs"/>
+    <property name="filePattern" value="%d{yyyy-MM-dd}"/>
+    <property name="contentPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"/>
+    <!--<property name="contentPattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } -&#45;&#45; [%15.15t] %-40.40logger{50} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />-->
+    <property name="fileNamePattern" value="${filePath}/${filePattern}/${log.env.module}-${filePattern}.log"/>
+
+
+    <!--适用于开发环境-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>${contentPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!--all-->
+    <appender name="all" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${filePath}/${log.env.module}-all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${filePath}/${filePattern}/${log.env.module}-%d{yyyy-MM-dd}.%i-all.log</fileNamePattern>
+            <maxFileSize>20MB</maxFileSize>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${contentPattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <!--error-->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${filePath}/${log.env.module}-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${filePath}/${filePattern}/${log.env.module}-%d{yyyy-MM-dd}-error.log</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${contentPattern}</pattern>
+        </encoder>
+    </appender>
+
+
+    <springProfile name="dev">
+
+        <logger name="com.cloud.order.mapper" level="debug"/>
+
+        <root level="info">
+            <appender-ref ref="all"></appender-ref>
+            <appender-ref ref="error"></appender-ref>
+        </root>
+    </springProfile>
+
+
+    <springProfile name="prd">
+
+        <logger name="com.cloud.order.mapper" level="debug"/>
+
+        <root level="info">
+            <appender-ref ref="all"></appender-ref>
+            <appender-ref ref="error"></appender-ref>
+        </root>
+    </springProfile>
+
+
+</configuration>

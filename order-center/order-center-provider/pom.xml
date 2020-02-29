@@ -9,7 +9,7 @@
         <artifactId>member-center</artifactId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>member-center-provider</artifactId>
+    <artifactId>order-center-provider</artifactId>
     <packaging>jar</packaging>
 
     <!-- mvn打包跳过测试 -->

@@ -1,4 +1,4 @@
-package com.cloud.member;
+package com.cloud.order;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients
 //@NacosPropertySource(dataId = "showyu-member-center", autoRefreshed = true)
-public class StartupApplication {
+public class OrderStartupApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StartupApplication.class, args);
+        SpringApplication.run(OrderStartupApplication.class, args);
     }
 
 }
