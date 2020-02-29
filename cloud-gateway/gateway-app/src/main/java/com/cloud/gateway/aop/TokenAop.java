@@ -12,11 +12,11 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestHeader;
 
+import javax.annotation.Resource;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
@@ -26,9 +26,9 @@ import java.lang.reflect.Method;
 @Component
 @Aspect
 @Slf4j
-public class JwtCheckAop {
+public class TokenAop {
 
-    @Autowired
+    @Resource
     private ObjectMapper objectMapper;
 
     @Pointcut("@annotation(com.cloud.gateway.annotation.JwtCheck)")

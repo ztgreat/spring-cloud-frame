@@ -1,0 +1,45 @@
+package com.cloud.gateway.extension;
+
+import cn.hutool.core.util.IdUtil;
+import org.springframework.stereotype.Component;
+
+/**
+ * 应用运行上下文
+ * 遇到过很多这样的场景, 与领域无关的东西, 渗透到领域模型里面去
+ * 想通过某种方式解决这个问题,
+ */
+@Component
+public class AppRuntimeEnv {
+
+    /**
+     * 租户编码
+     */
+    private ThreadLocal<String> tenantId = ThreadLocal.withInitial(() -> null);
+    /**
+     * token信息
+     */
+    private ThreadLocal<String> token = ThreadLocal.withInitial(() -> null);
+
+    public void setTenantId(String tenantId) {
+        this.tenantId.set(tenantId);
+    }
+
+    public void setToken(String token) {
+        this.token.set(token);
+    }
+
+    public String getTenantId() {
+        return tenantId.get();
+    }
+
+    public String getToken() {
+        return token.get();
+    }
+
+    private ThreadLocal<String> requestId = ThreadLocal.withInitial(IdUtil::simpleUUID);
+
+    public String getRequestId() {
+        return requestId.get();
+    }
+
+}

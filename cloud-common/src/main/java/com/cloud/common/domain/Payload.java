@@ -10,6 +10,7 @@ public class Payload<T> implements Serializable {
 
     public Payload() {
     }
+
     public Payload(T payload) {
         this.payload = payload;
     }
@@ -19,6 +20,7 @@ public class Payload<T> implements Serializable {
         this.code = code;
         this.msg = msg;
     }
+
     public String getCode() {
         return code;
     }

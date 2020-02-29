@@ -28,7 +28,6 @@ import java.util.Arrays;
  * 描述: JwtToken 过滤器
  */
 @Component
-//读取 yml 文件下的 org.my.jwt
 @ConfigurationProperties("org.my.jwt")
 @Setter
 @Getter
