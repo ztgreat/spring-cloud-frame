@@ -9,16 +9,6 @@
     <name>cloud-common</name>
     <description>cloud-common</description>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.10</version>
-        </dependency>
-
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>

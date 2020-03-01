@@ -1,6 +1,6 @@
 package com.cloud.gateway.controller;
 
-import com.cloud.gateway.annotation.JwtCheck;
+import com.cloud.common.annotation.Token;
 import com.cloud.gateway.domain.JwtModel;
 import com.cloud.gateway.domain.dto.ReturnData;
 import com.cloud.gateway.domain.dto.UserDTO;
@@ -84,7 +84,7 @@ public class AuthController {
      * @return
      */
     @GetMapping("/testJwtCheck")
-    @JwtCheck
+    @Token
     public ReturnData<String> testJwtCheck(@RequestHeader("Authorization") String token, @RequestParam("name") @Valid String name) {
 
         return new ReturnData<String>(HttpStatus.OK.value(), "请求成功咯", "请求成功咯" + name);

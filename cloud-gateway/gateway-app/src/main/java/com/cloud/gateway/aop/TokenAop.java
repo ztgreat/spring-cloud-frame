@@ -31,7 +31,7 @@ public class TokenAop {
     @Resource
     private ObjectMapper objectMapper;
 
-    @Pointcut("@annotation(com.cloud.gateway.annotation.JwtCheck)")
+    @Pointcut("@annotation(com.cloud.common.annotation.Token)")
     private void apiAop() {
 
     }

@@ -25,29 +25,27 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 /**
- * 描述: JwtToken 过滤器
+ * JwtToken 过滤器
+ *
+ * @author ztgreat
  */
 @Component
 @ConfigurationProperties("org.my.jwt")
 @Setter
 @Getter
 @Slf4j
-public class JwtTokenFilter implements GlobalFilter, Ordered {
+public class TokenFilter implements GlobalFilter, Ordered {
 
     private String[] skipAuthUrls;
 
     private ObjectMapper objectMapper;
 
-    public JwtTokenFilter(ObjectMapper objectMapper) {
+    public TokenFilter(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
     /**
      * 过滤器
-     *
-     * @param exchange
-     * @param chain
-     * @return
      */
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -88,7 +86,6 @@ public class JwtTokenFilter implements GlobalFilter, Ordered {
      *
      * @param resp 响应对象
      * @param mess 错误信息
-     * @return
      */
     private Mono<Void> authErro(ServerHttpResponse resp, String mess) {
         resp.setStatusCode(HttpStatus.UNAUTHORIZED);

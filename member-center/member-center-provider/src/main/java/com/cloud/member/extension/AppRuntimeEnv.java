@@ -1,4 +1,4 @@
-package com.cloud.gateway.extension;
+package com.cloud.member.extension;
 
 import cn.hutool.core.util.IdUtil;
 import org.springframework.stereotype.Component;
