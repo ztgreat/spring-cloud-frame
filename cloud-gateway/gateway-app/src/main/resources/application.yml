@@ -1,12 +1,19 @@
 server:
   port: 30000
 
+# 业务配置 - 是否开启 动态路由
+cloud:
+  gateway:
+    #网关动态路由
+    dynamicRoute:
+      enabled: true
+
 
 spring:
   cloud:
-#################################
-#   gateway相关配置
-#################################
+    #################################
+    #   gateway相关配置
+    #################################
     gateway:
       ################################
       # 配置允许跨域请求
@@ -16,8 +23,13 @@ spring:
           '[/**]':
             allowedOrigins: "*"
             allowedMethods:
-            - GET
-            - POST
+              - GET
+              - POST
+
+      # nacos 配置
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
 
     sentinel:
       transport:
@@ -26,36 +38,36 @@ spring:
       # 服务启动直接建立心跳连接
       eager: true
 
-#    路由定义
+      #    路由定义
       routes:
 
-      - id: baidu
-        uri: https://www.baidu.com
-        predicates:
-        - Path=/baidu/**
-        filters:
-        - StripPrefix=1
+        - id: baidu
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/baidu/**
+          filters:
+            - StripPrefix=1
 
-      - id: eureka-manage
-        uri: lb://eureka-manage
-        predicates:
-        - Path=/eureka-manage/**
-        filters:
-        - StripPrefix=1
+        - id: eureka-manage
+          uri: lb://eureka-manage
+          predicates:
+            - Path=/eureka-manage/**
+          filters:
+            - StripPrefix=1
 
-      - id: sina
-        uri: https://www.sina.com.cn/
-        predicates:
-        - Path=/sina/**
-        filters:
-        - StripPrefix=1
+        - id: sina
+          uri: https://www.sina.com.cn/
+          predicates:
+            - Path=/sina/**
+          filters:
+            - StripPrefix=1
 
 org:
   my:
     jwt:
       #跳过认证的路由
       skip-auth-urls:
-      - /baidu
+        - /baidu
       ############################################
       #   有效时长
       #     单位：d:天、h:小时、m:分钟、s:秒

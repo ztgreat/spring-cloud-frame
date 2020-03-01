@@ -68,7 +68,7 @@ public class AuthController {
                 break;
             }
         }
-        return new ReturnData<String>(HttpStatus.OK.value(), "认证成功", jwt);
+        return new ReturnData<>(HttpStatus.OK.value(), "认证成功", jwt);
     }
 
     /**
