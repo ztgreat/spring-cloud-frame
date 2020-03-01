@@ -1,5 +1,6 @@
 package com.cloud.gateway.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cloud.common.annotation.Token;
 import com.cloud.gateway.domain.JwtModel;
 import com.cloud.gateway.domain.dto.ReturnData;
@@ -74,6 +75,7 @@ public class AuthController {
      * 为授权提示
      */
     @GetMapping("/unauthorized")
+    @SentinelResource("unauthorized")
     public ReturnData<String> unauthorized() {
         return new ReturnData<String>(HttpStatus.UNAUTHORIZED.value(), "未认证,请重新登陆", null);
     }
