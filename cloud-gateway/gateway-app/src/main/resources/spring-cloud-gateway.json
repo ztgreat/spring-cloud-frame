@@ -1,0 +1,15 @@
+
+[
+  {
+    "id": "aliyun_route-测试","uri":"https://www.aliyun.com/","order": 0,
+    "filters": [],
+    "predicates":
+    [{"args": {"pattern":"/product/**"},"name":"Path"}]
+  },
+  {
+    "id": "aliyun_route1-测试","uri":"https://www.aliyun.com/","order": 0,
+    "filters": [],
+    "predicates":
+    [{"args": {"pattern":"/product1/**"},"name":"Path"}]
+  }
+]

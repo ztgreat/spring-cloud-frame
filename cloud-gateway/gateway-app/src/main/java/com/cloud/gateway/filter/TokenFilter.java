@@ -61,7 +61,8 @@ public class TokenFilter implements GlobalFilter, Ordered {
         ServerHttpResponse resp = exchange.getResponse();
         if (StrUtil.isBlank(token)) {
             //没有token
-            return authErro(resp, "请登陆");
+            //return authErro(resp, "请登陆");
+            return chain.filter(exchange);
         } else {
             //有token
             try {

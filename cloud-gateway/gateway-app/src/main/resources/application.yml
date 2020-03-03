@@ -31,6 +31,9 @@ spring:
         discovery:
           server-addr: 127.0.0.1:8848
 
+        config:
+          server-addr: 127.0.0.1:8848
+
     sentinel:
       transport:
         dashboard: localhost:8088
@@ -73,3 +76,9 @@ org:
       #     单位：d:天、h:小时、m:分钟、s:秒
       ###########################################
       effective-time: 1m
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

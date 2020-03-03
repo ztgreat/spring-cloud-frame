@@ -27,7 +27,7 @@ import java.util.concurrent.Executor;
 @Slf4j
 public class NacosRouteDefinitionRepository implements RouteDefinitionRepository {
     private static final String NACOS_DATA_ID = "gateway-dev-routes";
-    private static final String NACOS_GROUP_ID = "gateway-dev";
+    private static final String NACOS_GROUP_ID = "DEFAULT_GROUP";
 
     private ApplicationEventPublisher publisher;
 
