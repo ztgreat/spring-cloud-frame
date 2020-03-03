@@ -1,3 +1,24 @@
+# dataId : ${prefix}-${spring.profile.active}.${file-extension}
+
+# gateway-dev.yaml
+
 spring:
   application:
     name: gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        #默认为Public命名空间,可以省略不写
+        namespace: Public
+        #指定配置群组 --如果是Public命名空间 则可以省略群组配置
+        group: DEFAULT_GROUP
+        # 文件格式
+        file-extension: yaml
+        prefix: gateway
+
+
+
+
