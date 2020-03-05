@@ -1,4 +1,4 @@
-package com.deepexi.member.enums;
+package com.cloud.member.enums;
 
 import cn.hutool.core.util.StrUtil;
 
