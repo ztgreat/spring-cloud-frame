@@ -14,6 +14,8 @@ import java.util.Objects;
 /**
  * feign调用之前进行拦截
  * 获取用户的令牌,再将令牌封装到请求头中传递到下个微服务
+ *
+ * @author zhangteng
  */
 public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
 

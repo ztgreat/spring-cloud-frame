@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 
+/**
+ * @author zhangteng
+ */
 @Mapper
 public interface MemberMapper extends BaseMapper<String> {
 

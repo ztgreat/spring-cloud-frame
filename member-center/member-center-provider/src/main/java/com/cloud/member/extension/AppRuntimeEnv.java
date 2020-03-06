@@ -32,7 +32,7 @@ public class AppRuntimeEnv {
 
     public AppRuntimeEnv ensureToken(String token) {
         if (null == token) {
-            throw new RuntimeException("token 不能为空");
+            //throw new RuntimeException("token 不能为空");
         }
         this.token.set(token);
         return this;
@@ -40,7 +40,7 @@ public class AppRuntimeEnv {
 
     public AppRuntimeEnv ensureTenantId(String tenantId) {
         if (null == tenantId) {
-            throw new RuntimeException("tenantId 不能为空");
+           // throw new RuntimeException("tenantId 不能为空");
         }
         this.tenantId.set(tenantId);
         return this;
