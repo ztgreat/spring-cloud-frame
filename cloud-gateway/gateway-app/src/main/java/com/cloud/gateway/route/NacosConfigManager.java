@@ -1,4 +1,4 @@
-package com.cloud.gateway.extension;
+package com.cloud.gateway.route;
 
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.cloud.nacos.diagnostics.analyzer.NacosConnectionFailureException;

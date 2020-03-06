@@ -5,7 +5,6 @@ import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
-import com.cloud.gateway.extension.NacosConfigManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -26,6 +25,8 @@ import java.util.concurrent.Executor;
  */
 @Slf4j
 public class NacosRouteDefinitionRepository implements RouteDefinitionRepository {
+
+    //todo 测试 使用
     private static final String NACOS_DATA_ID = "gateway-dev-routes";
     private static final String NACOS_GROUP_ID = "DEFAULT_GROUP";
 
@@ -59,6 +60,7 @@ public class NacosRouteDefinitionRepository implements RouteDefinitionRepository
      */
     private void addListener() {
         try {
+
             nacosConfigManager.getConfigService().addListener(NACOS_DATA_ID, NACOS_GROUP_ID, new Listener() {
                 @Override
                 public Executor getExecutor() {
