@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NacosTestCotroller {
 
 
-    @Value("${nacos.yaml.age:1}")
+    @Value("${nacos.yaml.age}")
     private String age;
 
     @GetMapping("/hello")

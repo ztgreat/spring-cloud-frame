@@ -25,7 +25,6 @@
     <dependencyManagement>
         <dependencies>
 
-            <!--支持Spring Boot 2.1.X-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
