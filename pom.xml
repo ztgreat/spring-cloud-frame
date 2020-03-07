@@ -4,12 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-
     <groupId>com.cloud</groupId>
-    <artifactId>order-center</artifactId>
+    <artifactId>spring-cloud-parent</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
-
 
     <!-- mvn打包跳过测试 -->
     <properties>
@@ -31,82 +29,14 @@
         <dependencies>
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring-cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-
-            <!--Swagger2 - RESTful API文档-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cn.hutool</groupId>
-                <artifactId>hutool-all</artifactId>
-                <version>5.1.4</version>
-            </dependency>
-
-            <!--使用 lombok 简化 Java 代码-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
-                <scope>provided</scope>
+                <groupId>com.cloud</groupId>
+                <artifactId>swagger2-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-
-    </dependencies>
 
     <build>
         <plugins>
@@ -119,31 +49,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-
-            <!-- 打包 jar 文件时，配置 manifest 文件，加入 lib 包的 jar 依赖 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <!-- Add directory entries -->
-                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                    <addClasspath>true</addClasspath>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- resource -->
@@ -163,38 +68,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
             </plugin>
-
-            <!-- ant -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-            </plugin>
-
-            <!-- dependency -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <!-- Java Document Generate -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
 
         <!-- 资源文件配置 -->
         <resources>

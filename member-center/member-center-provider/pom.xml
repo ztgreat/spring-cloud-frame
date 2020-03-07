@@ -37,6 +37,11 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>swagger2-spring-boot-starter</artifactId>
+        </dependency>
+
         <!--项目间api 依赖 End-->
 
         <!-- Spring Boot Begin -->
@@ -46,6 +51,7 @@
             <!--<artifactId>spring-boot-autoconfigure</artifactId>-->
         <!--</dependency>-->
 
+        <!-- spring boot2用户 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -135,16 +141,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.wsl.provider.ProviderApplication</mainClass>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>8</source>
-                    <target>8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
             </plugin>
         </plugins>

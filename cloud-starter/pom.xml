@@ -3,11 +3,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
-    <groupId>com.cloud</groupId>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>spring-cloud-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <artifactId>cloud-starter</artifactId>
     <version>1.0.0</version>
     <name>cloud-stater</name>
+    <packaging>pom</packaging>
     <description>cloud-stater</description>
 
     <properties>
@@ -54,19 +58,6 @@
                 <scope>import</scope>
             </dependency>
 
-
-            <!--Swagger2 - RESTful API文档-->
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
-            </dependency>
-
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
@@ -96,16 +87,6 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -116,32 +97,9 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <showWarnings>true</showWarnings>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                 </configuration>
-            </plugin>
-
-            <!-- 打包 jar 文件时，配置 manifest 文件，加入 lib 包的 jar 依赖 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <addMavenDescriptor>false</addMavenDescriptor>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <!-- Add directory entries -->
-                                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                    <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                                    <addClasspath>true</addClasspath>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
 
             <!-- resource -->
@@ -161,38 +119,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
             </plugin>
-
-            <!-- ant -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-            </plugin>
-
-            <!-- dependency -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-            </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <!-- Java Document Generate -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
-
-            </plugins>
-        </pluginManagement>
 
         <!-- 资源文件配置 -->
         <resources>
