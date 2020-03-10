@@ -4,14 +4,37 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>gateway</artifactId>
+        <artifactId>common</artifactId>
         <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <artifactId>gateway-admin</artifactId>
+    <artifactId>mq-spring-boot-starter</artifactId>
     <version>1.0.0</version>
-    <name>gateway-admin</name>
-    <description>gateway-admin</description>
+    <name>mq-spring-boot-starter</name>
+    <description>mq-starter</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>common-util</artifactId>
+        </dependency>
+
+
+    </dependencies>
+
 
 
     <build>

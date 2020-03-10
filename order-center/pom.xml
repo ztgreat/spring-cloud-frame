@@ -26,6 +26,11 @@
 
     </properties>
 
+    <modules>
+        <module>order-center-api</module>
+        <module>order-center-provider</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
 
@@ -37,7 +42,7 @@
 
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>cloud-common</artifactId>
+            <artifactId>common-util</artifactId>
         </dependency>
 
     </dependencies>

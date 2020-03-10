@@ -1,7 +1,7 @@
 package com.cloud.gateway.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.cloud.common.annotation.Token;
+import com.cloud.common.core.annotation.Token;
 import com.cloud.gateway.domain.JwtModel;
 import com.cloud.gateway.domain.dto.ReturnData;
 import com.cloud.gateway.domain.dto.UserDTO;

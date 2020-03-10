@@ -22,6 +22,11 @@
 
     </properties>
 
+    <modules>
+        <module>member-center-api</module>
+        <module>member-center-provider</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
 
@@ -36,7 +41,7 @@
 
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>cloud-common</artifactId>
+            <artifactId>common-util</artifactId>
         </dependency>
 
     </dependencies>

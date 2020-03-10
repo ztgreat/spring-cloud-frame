@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.cloud</groupId>
-        <artifactId>cloud-gateway</artifactId>
+        <artifactId>gateway</artifactId>
         <version>1.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
@@ -38,8 +38,7 @@
         <!--项目间api 依赖 Begin-->
         <dependency>
             <groupId>com.cloud</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>1.0.0</version>
+            <artifactId>common-util</artifactId>
         </dependency>
 
         <!--项目间api 依赖 End-->

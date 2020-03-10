@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>common</artifactId>
+        <version>1.0.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <artifactId>common-core</artifactId>
+    <version>1.0.0</version>
+    <name>common-core</name>
+    <description>common-core</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <mysql.version>6.0.6</mysql.version>
+        <mybatis-plus-boot-starter.version>3.3.1</mybatis-plus-boot-starter.version>
+        <pagehelper-spring-boot-starter.version>1.2.13</pagehelper-spring-boot-starter.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -25,6 +25,13 @@
 
     </properties>
 
+    <modules>
+        <module>cloud-common</module>
+        <module>cloud-gateway</module>
+        <module>member-center</module>
+        <module>order-center</module>
+    </modules>
+
     <dependencyManagement>
         <dependencies>
 
@@ -55,13 +62,24 @@
 
             <dependency>
                 <groupId>com.cloud</groupId>
-                <artifactId>cloud-common</artifactId>
+                <artifactId>common-util</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>common-core</artifactId>
                 <version>1.0.0</version>
             </dependency>
 
             <dependency>
                 <groupId>com.cloud</groupId>
                 <artifactId>swagger2-spring-boot-starter</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloud</groupId>
+                <artifactId>db-spring-boot-starter</artifactId>
                 <version>1.0.0</version>
             </dependency>
 

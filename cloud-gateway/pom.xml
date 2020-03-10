@@ -7,11 +7,11 @@
         <artifactId>spring-cloud-parent</artifactId>
         <version>1.0.0</version>
     </parent>
-    <artifactId>cloud-gateway</artifactId>
+    <artifactId>gateway</artifactId>
     <version>1.0.0</version>
-    <name>cloud-gateway</name>
+    <name>gateway</name>
     <packaging>pom</packaging>
-    <description>cloud-gateway</description>
+    <description>gateway</description>
 
     <properties>
         <maven.test.skip>true</maven.test.skip>
@@ -22,6 +22,11 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     </properties>
+
+    <modules>
+        <module>gateway-app</module>
+        <module>gateway-admin</module>
+    </modules>
 
 
     <dependencyManagement>
@@ -39,6 +44,11 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>common-util</artifactId>
+        </dependency>
 
 
         <dependency>
