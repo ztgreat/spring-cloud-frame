@@ -40,7 +40,7 @@ public class AppRuntimeEnv {
 
     public AppRuntimeEnv ensureTenantId(String tenantId) {
         if (null == tenantId) {
-           // throw new RuntimeException("tenantId 不能为空");
+            // throw new RuntimeException("tenantId 不能为空");
         }
         this.tenantId.set(tenantId);
         return this;

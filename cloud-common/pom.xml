@@ -3,9 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud</groupId>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>spring-cloud-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
     <artifactId>cloud-common</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
     <name>cloud-common</name>
     <description>cloud-common</description>
 
@@ -16,15 +21,6 @@
                 <artifactId>hutool-all</artifactId>
                 <version>5.1.4</version>
             </dependency>
-
-            <!--使用 lombok 简化 Java 代码-->
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.12</version>
-                <scope>provided</scope>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -33,7 +29,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>

@@ -11,6 +11,7 @@
     <artifactId>gateway-app</artifactId>
     <version>1.0.0</version>
     <name>gateway-app</name>
+    <packaging>jar</packaging>
     <description>gateway-app</description>
 
     <!-- mvn打包跳过测试 -->
@@ -38,7 +39,7 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-common</artifactId>
-            <version>${project.version}</version>
+            <version>1.0.0</version>
         </dependency>
 
         <!--项目间api 依赖 End-->
@@ -56,8 +57,8 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-web</artifactId>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
@@ -122,34 +123,34 @@
 
         <!-- starter  Begin-->
         <!--<dependency>-->
-            <!--<groupId>com.baomidou</groupId>-->
-            <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
-            <!--<version>${mybatis-plus-boot-starter.version}</version>-->
+        <!--<groupId>com.baomidou</groupId>-->
+        <!--<artifactId>mybatis-plus-boot-starter</artifactId>-->
+        <!--<version>${mybatis-plus-boot-starter.version}</version>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>com.github.pagehelper</groupId>-->
-            <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
-            <!--<version>${pagehelper-spring-boot-starter.version}</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.mybatis</groupId>-->
-                    <!--<artifactId>mybatis</artifactId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<groupId>org.mybatis</groupId>-->
-                    <!--<artifactId>mybatis-spring</artifactId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
+        <!--<groupId>com.github.pagehelper</groupId>-->
+        <!--<artifactId>pagehelper-spring-boot-starter</artifactId>-->
+        <!--<version>${pagehelper-spring-boot-starter.version}</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<groupId>org.mybatis</groupId>-->
+        <!--<artifactId>mybatis</artifactId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+        <!--<groupId>org.mybatis</groupId>-->
+        <!--<artifactId>mybatis-spring</artifactId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
         <!--</dependency>-->
 
         <!-- starter  End-->
 
 
         <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>${mysql.version}</version>-->
+        <!--<groupId>mysql</groupId>-->
+        <!--<artifactId>mysql-connector-java</artifactId>-->
+        <!--<version>${mysql.version}</version>-->
         <!--</dependency>-->
 
     </dependencies>

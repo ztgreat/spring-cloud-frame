@@ -5,9 +5,9 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
-import com.cloud.member.annotation.LogAspectEnable;
-import com.cloud.member.annotation.TenantId;
-import com.cloud.member.annotation.Token;
+import com.cloud.common.annotation.LogAspectEnable;
+import com.cloud.common.annotation.TenantId;
+import com.cloud.common.annotation.Token;
 import com.cloud.member.extension.AppRuntimeEnv;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -106,12 +106,8 @@ public class LogAspect {
         }
 
         if (logAspectEnable == null || logAspectEnable.end()) {
-            if (logAspectEnable == null || logAspectEnable.timeOut()) {
-                endTime = new DateTime();
-                logger.info("日志统一打印 ===== {}.{}() end =====,响应时间:{}毫秒,响应内容:\n{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName(), DateUtil.between(startTime, endTime, DateUnit.MS), argsToString(response));
-            } else {
-                logger.info("日志统一打印 ===== {}.{}() end =====,响应内容:\n{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName(), argsToString(response));
-            }
+            endTime = new DateTime();
+            logger.info("日志统一打印 ===== {}.{}() end =====,响应时间:{}毫秒,响应内容:\n{}", point.getSignature().getDeclaringTypeName(), point.getSignature().getName(), DateUtil.between(startTime, endTime, DateUnit.MS), argsToString(response));
         }
         return response;
     }
