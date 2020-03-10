@@ -31,6 +31,7 @@
         <module>mq-spring-boot-starter</module>
         <module>redis-spring-boot-starter</module>
         <module>swagger2-spring-boot-starter</module>
+        <module>sentinel-spring-boot-starter</module>
     </modules>
 
 
