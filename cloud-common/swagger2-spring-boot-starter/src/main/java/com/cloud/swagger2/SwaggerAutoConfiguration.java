@@ -174,7 +174,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
         List<SecurityContext> contexts = new ArrayList<>(1);
         SecurityContext securityContext = SecurityContext.builder()
                 .securityReferences(defaultAuth())
-                //.forPaths(PathSelectors.regex("^(?!auth).*$"))
+                //.forPaths(PathSelectors.regex("^(?!com.cloud.auth.auth).*$"))
                 .build();
         contexts.add(securityContext);
         return contexts;

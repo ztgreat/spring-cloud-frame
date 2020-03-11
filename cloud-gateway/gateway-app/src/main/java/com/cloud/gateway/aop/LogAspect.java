@@ -73,11 +73,11 @@
 //
 //        //token统一获取,eg:Authorization：Bearer xxxx
 //        Token tokeAnno = method.getAnnotation(Token.class);
-//        String auth = request.getHeader(TOKEN_KEY);
+//        String com.cloud.auth.auth = request.getHeader(TOKEN_KEY);
 //        if (tokeAnno == null || tokeAnno.require()) {
-//            appRuntimeEnv.ensureToken(StrUtil.isEmpty(auth) ? null : auth.split(" ")[1].trim());
+//            appRuntimeEnv.ensureToken(StrUtil.isEmpty(com.cloud.auth.auth) ? null : com.cloud.auth.auth.split(" ")[1].trim());
 //        } else {
-//            appRuntimeEnv.setToken(StrUtil.isEmpty(auth) ? null : auth.split(" ")[1].trim());
+//            appRuntimeEnv.setToken(StrUtil.isEmpty(com.cloud.auth.auth) ? null : com.cloud.auth.auth.split(" ")[1].trim());
 //        }
 //    }
 //

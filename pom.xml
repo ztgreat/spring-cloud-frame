@@ -28,6 +28,7 @@
     <modules>
         <module>cloud-common</module>
         <module>cloud-gateway</module>
+        <module>cloud-auth</module>
         <module>member-center</module>
         <module>order-center</module>
     </modules>

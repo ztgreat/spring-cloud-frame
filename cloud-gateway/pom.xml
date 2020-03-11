@@ -50,6 +50,11 @@
             <artifactId>common-util</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
 
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

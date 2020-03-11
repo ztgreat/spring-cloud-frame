@@ -12,7 +12,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class OrderStartupApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderStartupApplication.class, args);
+        SpringApplication.run(PassportStartupApplication.class, args);
     }
 
 }

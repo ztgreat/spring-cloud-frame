@@ -36,10 +36,7 @@
     <dependencies>
 
         <!--项目间api 依赖 Begin-->
-        <dependency>
-            <groupId>com.cloud</groupId>
-            <artifactId>common-util</artifactId>
-        </dependency>
+
 
         <!--项目间api 依赖 End-->
 
