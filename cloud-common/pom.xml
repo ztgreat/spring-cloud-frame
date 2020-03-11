@@ -23,6 +23,7 @@
     </properties>
 
     <modules>
+        <module>common-config</module>
         <module>common-core</module>
         <module>common-util</module>
         <module>db-spring-boot-starter</module>
