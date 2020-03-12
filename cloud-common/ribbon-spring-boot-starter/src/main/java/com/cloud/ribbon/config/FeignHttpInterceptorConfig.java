@@ -21,6 +21,7 @@ public class FeignHttpInterceptorConfig {
 
     @PostConstruct
     public void initialize() {
+        requestHeaders.add(CommonConstant.TOKEN_HEADER);
         requestHeaders.add(SecurityConstants.USER_ID_HEADER);
         requestHeaders.add(SecurityConstants.USER_HEADER);
         requestHeaders.add(CommonConstant.L_B_VERSION);

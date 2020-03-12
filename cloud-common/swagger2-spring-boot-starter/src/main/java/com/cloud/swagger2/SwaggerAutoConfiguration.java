@@ -3,6 +3,7 @@ package com.cloud.swagger2;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -26,7 +27,14 @@ import java.util.stream.Collectors;
 @Import({
         Swagger2Configuration.class
 })
+@Slf4j
 public class SwaggerAutoConfiguration implements BeanFactoryAware {
+
+    public SwaggerAutoConfiguration() {
+
+        log.info("============ Swagger 配置加载");
+    }
+
     private static final String AUTH_KEY = "Authorization";
 
     private BeanFactory beanFactory;

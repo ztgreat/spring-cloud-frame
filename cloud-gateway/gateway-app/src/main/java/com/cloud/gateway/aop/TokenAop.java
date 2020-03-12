@@ -31,7 +31,7 @@ public class TokenAop {
     @Resource
     private ObjectMapper objectMapper;
 
-    @Pointcut("@annotation(com.cloud.common.annotation.Token)")
+    @Pointcut("@annotation(com.cloud.common.core.annotation.Token)")
     private void apiAop() {
 
     }

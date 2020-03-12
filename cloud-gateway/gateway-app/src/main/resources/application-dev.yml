@@ -24,7 +24,9 @@ spring:
 
     sentinel:
       transport:
-        dashboard: 127.0.0.1:8088
+        # 配置Sentinel控制台的ip和端口
+        dashboard: 127.0.0.1:8080
+        # 这个端口配置会在应用对应的机器上启动一个 Http Server，该 Server 会与 Sentinel 控制台做交互
         port: 8099
       # 服务启动直接建立心跳连接
       eager: true

@@ -1,6 +1,7 @@
 package com.cloud.ribbon;
 
 import com.cloud.ribbon.config.RestTemplateProperties;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.config.Registry;
@@ -20,7 +21,13 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 @EnableConfigurationProperties(RestTemplateProperties.class)
+@Slf4j
 public class RestTemplateAutoConfigure {
+
+
+    public RestTemplateAutoConfigure() {
+        log.info("============ Feign RestTemplate 配置加载");
+    }
 
     @Autowired
     private RestTemplateProperties restTemplateProperties;
