@@ -32,7 +32,7 @@ public class SwaggerAutoConfiguration implements BeanFactoryAware {
 
     public SwaggerAutoConfiguration() {
 
-        log.info("============ Swagger 配置加载");
+        log.info("[配置加载]-->Swagger");
     }
 
     private static final String AUTH_KEY = "Authorization";

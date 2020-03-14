@@ -11,6 +11,6 @@ public class DbAutoConfigure {
 
 
     public DbAutoConfigure() {
-        log.info("============ DB 配置加载");
+        log.info("[配置加载]-->数据库");
     }
 }

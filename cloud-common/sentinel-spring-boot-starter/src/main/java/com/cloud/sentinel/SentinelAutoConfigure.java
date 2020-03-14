@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SentinelAutoConfigure {
     public SentinelAutoConfigure() {
 
-        log.info("============ Sentinel配置加载");
+        log.info("[配置加载]-->Sentinel");
         WebCallbackManager.setUrlBlockHandler(new CustomUrlBlockHandler());
     }
 

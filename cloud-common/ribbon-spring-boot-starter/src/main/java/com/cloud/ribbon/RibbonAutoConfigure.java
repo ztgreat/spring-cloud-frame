@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 public class RibbonAutoConfigure {
 
     public RibbonAutoConfigure() {
-        log.info("============ Ribbon扩展配置加载");
+        log.info("[配置加载]-->Ribbon");
     }
 
     @Bean

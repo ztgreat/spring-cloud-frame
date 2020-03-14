@@ -58,7 +58,7 @@ public class EventBusAutoConfiguration implements ApplicationListener<Applicatio
     @Bean
     public EventBus initEventBus() {
         AsyncExecutorProperties asyncExecutor = eventBusProperties.getExecutor();
-        LOGGER.info("init  EventBus bean [eventBus], async threadPool info [{}]", asyncExecutor);
+        LOGGER.info("[配置加载]-->init  EventBus bean [eventBus], async threadPool info [{}]", asyncExecutor);
         ExecutorService executorService = new ThreadPoolExecutor(asyncExecutor.getCorePoolSize(),
                 asyncExecutor.getMaximumPoolSize(), asyncExecutor.getKeepAliveSecond(), TimeUnit.SECONDS,
                 new LinkedBlockingQueue<>(asyncExecutor.getQueueSize()),

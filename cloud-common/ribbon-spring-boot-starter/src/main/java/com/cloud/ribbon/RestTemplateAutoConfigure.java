@@ -26,7 +26,7 @@ public class RestTemplateAutoConfigure {
 
 
     public RestTemplateAutoConfigure() {
-        log.info("Feign RestTemplate 配置加载");
+        log.info("[配置加载]-->Feign RestTemplate");
     }
 
     @Autowired
