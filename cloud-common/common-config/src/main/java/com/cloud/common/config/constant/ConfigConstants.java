@@ -10,6 +10,11 @@ public interface ConfigConstants {
     String CONFIG_RIBBON_ISOLATION_ENABLED = "com.cloud.ribbon.isolation.enabled";
 
     /**
+     * 服务版本
+     */
+    String CONFIG_RIBBON_ISOLATION_VERSION = "com.cloud.ribbon.isolation.version";
+
+    /**
      * feign rest 配置
      */
     String CONFIG_FEIGN_REST_TEMPLATE = "com.cloud.feign.rest-template";

@@ -2,5 +2,5 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.cloud.ribbon.RibbonAutoConfigure,\
 com.cloud.ribbon.FeignAutoConfigure,\
 com.cloud.ribbon.RestTemplateAutoConfigure,\
-com.cloud.ribbon.filter.LbIsolationFilter,\
+com.cloud.ribbon.filter.WebRequestFilter,\
 com.cloud.ribbon.LbIsolationAutoConfigure

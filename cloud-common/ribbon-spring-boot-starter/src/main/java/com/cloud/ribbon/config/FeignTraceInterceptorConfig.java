@@ -16,7 +16,6 @@ public class FeignTraceInterceptorConfig {
     @Bean
     public RequestInterceptor baseFeignInterceptor() {
         return template -> {
-
             //传递日志traceId
             String traceId = MDC.get(CommonConstant.LOG_TRACE_ID);
             if (StrUtil.isNotEmpty(traceId)) {

@@ -16,7 +16,7 @@ public class OrderController {
     @Resource
     private OrderService orderService;
 
-    @GetMapping(value = "/test/{message}")
+    @GetMapping(value = "/feign/test/{message}")
     @ResponseBody
     public Member test(@PathVariable("message") String message) {
         return orderService.hello(message);

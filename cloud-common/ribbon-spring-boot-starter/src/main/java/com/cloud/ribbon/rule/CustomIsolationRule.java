@@ -5,10 +5,11 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.cloud.common.config.constant.CommonConstant;
-import com.cloud.common.config.context.LbIsolationContextHolder;
+import com.cloud.common.config.context.FeignContextHolder;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.RoundRobinRule;
 import com.netflix.loadbalancer.Server;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,8 +17,9 @@ import java.util.stream.Collectors;
 /**
  * 自定义隔离随机规则
  */
+@Slf4j
 public class CustomIsolationRule extends RoundRobinRule {
-    
+
     private final static String KEY_DEFAULT = "default";
 
     /**
@@ -25,6 +27,7 @@ public class CustomIsolationRule extends RoundRobinRule {
      */
     @Override
     public Server choose(ILoadBalancer lb, Object key) {
+
         if (lb == null) {
             return null;
         }
@@ -32,7 +35,7 @@ public class CustomIsolationRule extends RoundRobinRule {
         if (key != null && !KEY_DEFAULT.equals(key)) {
             version = key.toString();
         } else {
-            version = LbIsolationContextHolder.getVersion();
+            version = FeignContextHolder.getVersion();
         }
 
         List<Server> targetList = null;
@@ -59,6 +62,8 @@ public class CustomIsolationRule extends RoundRobinRule {
         if (CollUtil.isNotEmpty(targetList)) {
             return getServer(targetList);
         }
+
+        // 这里可以自行决定 如何操作
         return super.choose(lb, key);
     }
 

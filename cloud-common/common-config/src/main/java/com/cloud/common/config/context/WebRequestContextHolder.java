@@ -3,9 +3,9 @@ package com.cloud.common.config.context;
 import com.alibaba.ttl.TransmittableThreadLocal;
 
 /**
- * 负载均衡策略Holder
+ * web请求策略Holder
  */
-public class LbIsolationContextHolder {
+public class WebRequestContextHolder {
     private static final ThreadLocal<String> VERSION_CONTEXT = new TransmittableThreadLocal<>();
 
     public static void setVersion(String version) {

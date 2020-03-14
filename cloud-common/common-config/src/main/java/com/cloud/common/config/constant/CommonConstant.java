@@ -35,7 +35,7 @@ public interface CommonConstant {
     /**
      * 负载均衡策略-版本号 信息头
      */
-    String L_B_VERSION = "l-b-version";
+    String SERVICE_VERSION = "service_version";
     /**
      * 注册中心元数据 版本号
      */

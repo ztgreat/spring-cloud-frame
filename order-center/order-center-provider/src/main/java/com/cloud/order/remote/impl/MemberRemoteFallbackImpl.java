@@ -13,4 +13,10 @@ public class MemberRemoteFallbackImpl implements MemberRemote {
         message.setName("fail");
         return message;
     }
+
+    @Override
+    public Member hello2(Member message) {
+        message.setName("fail2");
+        return message;
+    }
 }

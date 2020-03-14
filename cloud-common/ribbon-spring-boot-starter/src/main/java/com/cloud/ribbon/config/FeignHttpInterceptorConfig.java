@@ -1,8 +1,13 @@
 package com.cloud.ribbon.config;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import com.cloud.common.config.constant.CommonConstant;
 import com.cloud.common.config.constant.SecurityConstants;
+import com.cloud.common.config.context.FeignContextHolder;
+import com.cloud.common.config.context.WebRequestContextHolder;
 import feign.RequestInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -12,19 +17,22 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * feign拦截器，只包含http相关数据
  */
+@Slf4j
 public class FeignHttpInterceptorConfig {
-    protected List<String> requestHeaders = new ArrayList<>();
+
+    private List<String> requestHeaders = new ArrayList<>();
 
     @PostConstruct
     public void initialize() {
         requestHeaders.add(CommonConstant.TOKEN_HEADER);
         requestHeaders.add(SecurityConstants.USER_ID_HEADER);
         requestHeaders.add(SecurityConstants.USER_HEADER);
-        requestHeaders.add(CommonConstant.L_B_VERSION);
+        requestHeaders.add(CommonConstant.SERVICE_VERSION);
     }
 
     /**
@@ -35,20 +43,45 @@ public class FeignHttpInterceptorConfig {
         return template -> {
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                     .getRequestAttributes();
-            if (attributes != null) {
-                HttpServletRequest request = attributes.getRequest();
-                Enumeration<String> headerNames = request.getHeaderNames();
-                if (headerNames != null) {
-                    String headerName;
-                    String headerValue;
-                    while (headerNames.hasMoreElements()) {
-                        headerName = headerNames.nextElement();
-                        if (requestHeaders.contains(headerName)) {
-                            headerValue = request.getHeader(headerName);
-                            template.header(headerName, headerValue);
-                        }
-                    }
+
+            List<String> serviceVersions = (List<String>) template.headers().get(CommonConstant.SERVICE_VERSION);
+
+            //默认 设置web 请求版本
+            FeignContextHolder.setVersion(WebRequestContextHolder.getVersion());
+
+            //设置 用户指定版本
+            if (CollectionUtil.isNotEmpty(serviceVersions)) {
+                FeignContextHolder.setVersion(serviceVersions.get(0));
+            }
+
+            log.info("feign 请求版本:" + FeignContextHolder.getVersion() + ",请求路径:" + template.request().url());
+
+            if (Objects.isNull(attributes)) {
+                return;
+            }
+            HttpServletRequest request = attributes.getRequest();
+            Enumeration<String> headerNames = request.getHeaderNames();
+            if (CollectionUtil.isEmpty(headerNames)) {
+                return;
+            }
+
+            String headerName;
+            String headerValue;
+            while (headerNames.hasMoreElements()) {
+                headerName = headerNames.nextElement();
+                if (requestHeaders.contains(headerName)) {
+                    headerValue = request.getHeader(headerName);
+                    template.header(headerName, headerValue);
                 }
+            }
+
+            //传递token，无网络隔离时需要传递
+            String token = extractHeaderToken(request);
+            if (StrUtil.isEmpty(token)) {
+                token = request.getParameter(CommonConstant.TOKEN_HEADER);
+            }
+            if (StrUtil.isNotEmpty(token)) {
+                template.header(CommonConstant.TOKEN_HEADER, CommonConstant.BEARER_TYPE + " " + token);
             }
         };
     }
