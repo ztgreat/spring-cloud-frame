@@ -3,6 +3,7 @@ package com.cloud.gateway.config;
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.cloud.gateway.route.NacosRouteDefinitionRepository;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.cloud.gateway.filter.LoadBalancerClientFilter;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

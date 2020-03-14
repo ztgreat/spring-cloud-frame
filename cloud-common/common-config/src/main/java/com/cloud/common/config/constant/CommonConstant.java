@@ -35,7 +35,12 @@ public interface CommonConstant {
     /**
      * 负载均衡策略-版本号 信息头
      */
-    String SERVICE_VERSION = "service_version";
+    String SERVICE_VERSION = "service-version";
+
+    /**
+     * 灰度版本信息
+     */
+    String GRAY_VERSION = "gray-version";
     /**
      * 注册中心元数据 版本号
      */
