@@ -10,6 +10,7 @@ import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.RoundRobinRule;
 import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +28,6 @@ public class CustomIsolationRule extends RoundRobinRule {
      */
     @Override
     public Server choose(ILoadBalancer lb, Object key) {
-
         if (lb == null) {
             return null;
         }

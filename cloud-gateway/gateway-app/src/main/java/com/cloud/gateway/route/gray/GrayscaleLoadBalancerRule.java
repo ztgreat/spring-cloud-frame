@@ -8,11 +8,10 @@ import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
 import com.cloud.gateway.properties.GrayRouteProperties;
-import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -23,23 +22,21 @@ import java.util.stream.Collectors;
 @Slf4j
 public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule {
 
-    @Autowired
+    @Resource
     private NacosDiscoveryProperties nacosDiscoveryProperties;
-
-    @Override
-    public void initWithNiwsConfig(IClientConfig iClientConfig) {
-        //留空
-    }
 
     /**
      * gateway 特殊性。需要设置key值内容知道你要转发的服务名称 key已经在filter内设置了key值。
      *
-     * @param key
-     * @return
+     * @param key loadBalancerKey
+     * @return 上游服务
      */
     @Override
     public Server choose(Object key) {
 
+        if (!(key instanceof GrayRouteProperties)) {
+            return super.choose(key);
+        }
         try {
             GrayRouteProperties grayRouteProperties = (GrayRouteProperties) key;
             String version = grayRouteProperties.getVersion();
@@ -59,7 +56,7 @@ public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule 
                     if (!CollectionUtil.isEmpty(sameClusterInstances)) {
                         instancesToChoose = sameClusterInstances;
                     } else {
-                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", new Object[]{grayRouteProperties.getServerName(), clusterName, instances});
+                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", grayRouteProperties.getServerName(), clusterName, instances);
                     }
                 }
                 //按nacos权重获取。这个是NacosRule的代码copy 过来 没有自己实现权重随机。这个权重是nacos控制台服务的权重设置
@@ -74,7 +71,7 @@ public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule 
                 return new NacosServer(instance);
             }
         } catch (Exception e) {
-            log.warn("NacosRule error", e);
+            log.warn("GrayRule error", e);
             return null;
         }
     }
