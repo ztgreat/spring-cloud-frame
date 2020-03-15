@@ -1,9 +1,3 @@
-# 业务配置 - 是否开启 动态路由
-cloud:
-  gateway:
-    #网关动态路由
-    dynamicRoute:
-      enabled: true
 
 spring:
   cloud:

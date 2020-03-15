@@ -1,15 +1,17 @@
-package com.cloud.gateway.route;
+package com.cloud.gateway.route.repository;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.cloud.nacos.NacosConfigProperties;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
+import com.cloud.gateway.route.NacosConfigManager;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
-import org.springframework.cloud.gateway.route.RouteDefinitionRepository;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -24,7 +26,7 @@ import java.util.concurrent.Executor;
  * @author zhangteng
  */
 @Slf4j
-public class NacosRouteDefinitionRepository implements RouteDefinitionRepository {
+public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepository implements ApplicationEventPublisherAware, CommandLineRunner {
 
     //todo 测试 使用
     private static final String NACOS_DATA_ID = "gateway-dev-routes";
@@ -36,12 +38,22 @@ public class NacosRouteDefinitionRepository implements RouteDefinitionRepository
 
     private NacosConfigManager nacosConfigManager;
 
-    public NacosRouteDefinitionRepository(ApplicationEventPublisher publisher, NacosConfigProperties nacosConfigProperties) {
-        this.publisher = publisher;
+    public NacosRouteDefinitionRepository(NacosConfigProperties nacosConfigProperties) {
         this.nacosConfigProperties = nacosConfigProperties;
-        nacosConfigManager = new NacosConfigManager(this.nacosConfigProperties);
-        addListener();
+        this.nacosConfigManager = new NacosConfigManager(this.nacosConfigProperties);
     }
+
+
+    @Override
+    public void run(String... args) {
+        loadRouteConfig();
+    }
+
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.publisher = applicationEventPublisher;
+    }
+
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
@@ -53,6 +65,28 @@ public class NacosRouteDefinitionRepository implements RouteDefinitionRepository
             log.error("getRouteDefinitions by nacos error", e);
         }
         return Flux.fromIterable(Collections.<RouteDefinition>emptyList());
+    }
+
+    @Override
+    public Mono<Void> save(Mono<RouteDefinition> route) {
+        return null;
+    }
+
+    @Override
+    public Mono<Void> delete(Mono<String> routeId) {
+        return null;
+    }
+
+    private List<RouteDefinition> getListByStr(String content) {
+        if (StrUtil.isNotEmpty(content)) {
+            return JSONObject.parseArray(content, RouteDefinition.class);
+        }
+        return new ArrayList<>(0);
+    }
+
+    @Override
+    public void loadRouteConfig() {
+        addListener();
     }
 
     /**
@@ -78,20 +112,5 @@ public class NacosRouteDefinitionRepository implements RouteDefinitionRepository
         }
     }
 
-    @Override
-    public Mono<Void> save(Mono<RouteDefinition> route) {
-        return null;
-    }
 
-    @Override
-    public Mono<Void> delete(Mono<String> routeId) {
-        return null;
-    }
-
-    private List<RouteDefinition> getListByStr(String content) {
-        if (StrUtil.isNotEmpty(content)) {
-            return JSONObject.parseArray(content, RouteDefinition.class);
-        }
-        return new ArrayList<>(0);
-    }
 }
