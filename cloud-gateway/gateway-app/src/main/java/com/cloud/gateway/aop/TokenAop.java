@@ -2,7 +2,7 @@ package com.cloud.gateway.aop;
 
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.StrUtil;
-import com.cloud.gateway.domain.dto.ReturnData;
+import com.cloud.common.core.domain.Result;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -12,7 +12,6 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestHeader;
 
@@ -101,8 +100,7 @@ public class TokenAop {
      * @return
      */
     private Object authErro(String mess) {
-        ReturnData<String> returnData = new ReturnData<>(HttpStatus.UNAUTHORIZED.value(), mess, mess);
-        return returnData;
+        return Result.fail(mess);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.cloud.gateway.filter;
 
 import cn.hutool.core.util.StrUtil;
-import com.cloud.gateway.domain.dto.ReturnData;
+import com.cloud.common.core.domain.Result;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -91,7 +91,7 @@ public class TokenFilter implements GlobalFilter, Ordered {
     private Mono<Void> authErro(ServerHttpResponse resp, String mess) {
         resp.setStatusCode(HttpStatus.UNAUTHORIZED);
         resp.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
-        ReturnData<String> returnData = new ReturnData<>(HttpStatus.UNAUTHORIZED.value(), mess, mess);
+        Result<String> returnData = Result.fail(mess);
         String returnStr = "";
         try {
             returnStr = objectMapper.writeValueAsString(returnData);

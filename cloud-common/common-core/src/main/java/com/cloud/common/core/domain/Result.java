@@ -68,6 +68,14 @@ public class Result<T> {
         return build(msg, CommonResultEnum.SUCCESS.getCode(), data);
     }
 
+
+    /**
+     * 构建默认成功结果
+     */
+    public static Result success() {
+        return success(null, null);
+    }
+
     /**
      * 构建成功结果
      */
@@ -101,6 +109,13 @@ public class Result<T> {
      */
     public static Result fail(String msg, Object data) {
         return build(msg, CommonResultEnum.FAIL.getCode(), data);
+    }
+
+    /**
+     * 构建普通失败结果
+     */
+    public static Result fail() {
+        return fail(CommonResultEnum.FAIL.getCode(), null);
     }
 
     /**

@@ -2,14 +2,13 @@ package com.cloud.gateway.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.cloud.common.core.annotation.Token;
+import com.cloud.common.core.domain.Result;
+import com.cloud.gateway.domain.DTO.UserDTO;
 import com.cloud.gateway.domain.JwtModel;
-import com.cloud.gateway.domain.dto.ReturnData;
-import com.cloud.gateway.domain.dto.UserDTO;
 import com.cloud.gateway.util.JwtUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +24,7 @@ public class AuthController {
 
     private ObjectMapper objectMapper;
 
+
     @Value("${org.my.jwt.effective-time}")
     private String effectiveTime;
 
@@ -39,7 +39,7 @@ public class AuthController {
      * @return
      */
     @PostMapping("/login")
-    public ReturnData<String> login(@RequestBody UserDTO userDTO) throws Exception {
+    public Result login(@RequestBody UserDTO userDTO) throws Exception {
         ArrayList<String> roleIdList = new ArrayList<>(1);
         roleIdList.add("role_test_1");
         JwtModel jwtModel = new JwtModel("test", roleIdList);
@@ -68,7 +68,7 @@ public class AuthController {
                 break;
             }
         }
-        return new ReturnData<>(HttpStatus.OK.value(), "认证成功", jwt);
+        return Result.success("认证成功", jwt);
     }
 
     /**
@@ -76,8 +76,8 @@ public class AuthController {
      */
     @GetMapping("/unauthorized")
     @SentinelResource("unauthorized")
-    public ReturnData<String> unauthorized() {
-        return new ReturnData<String>(HttpStatus.UNAUTHORIZED.value(), "未认证,请重新登陆", null);
+    public Result unauthorized() {
+        return Result.fail("未认证,请重新登陆");
     }
 
     /**
@@ -87,9 +87,9 @@ public class AuthController {
      */
     @GetMapping("/testJwtCheck")
     @Token
-    public ReturnData<String> testJwtCheck(@RequestHeader("Authorization") String token, @RequestParam("name") @Valid String name) {
+    public Result testJwtCheck(@RequestHeader("Authorization") String token, @RequestParam("name") @Valid String name) {
 
-        return new ReturnData<String>(HttpStatus.OK.value(), "请求成功咯", "请求成功咯" + name);
+        return Result.success("请求成功", "请求成功:" + name);
 
     }
 }

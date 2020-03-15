@@ -1,8 +1,7 @@
-package com.cloud.gateway.domain;
+package com.cloud.gateway.domain.DTO;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.cloud.gateway.domain.GatewayMysqlRouteFilter;
+import com.cloud.gateway.domain.GatewayMysqlRoutePredicate;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,10 +11,8 @@ import java.util.List;
  * 实体
  */
 @Data
-@TableName("gateway_route")
-public class GatewayMysqlRoute {
+public class GatewayMysqlRouteDTO {
 
-    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String serviceId;
@@ -23,6 +20,10 @@ public class GatewayMysqlRoute {
     private String uri;
 
     private Integer sort;
+
+    private List<GatewayMysqlRoutePredicate> predicates;
+
+    private List<GatewayMysqlRouteFilter> filters;
 
     private String createdBy;
 

@@ -28,6 +28,10 @@ import java.util.concurrent.Executor;
 @Slf4j
 public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepository implements ApplicationEventPublisherAware, CommandLineRunner {
 
+
+    private volatile boolean started;
+
+
     //todo 测试 使用
     private static final String NACOS_DATA_ID = "gateway-dev-routes";
     private static final String NACOS_GROUP_ID = "DEFAULT_GROUP";
@@ -41,6 +45,7 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
     public NacosRouteDefinitionRepository(NacosConfigProperties nacosConfigProperties) {
         this.nacosConfigProperties = nacosConfigProperties;
         this.nacosConfigManager = new NacosConfigManager(this.nacosConfigProperties);
+        this.started = false;
     }
 
 
@@ -85,31 +90,38 @@ public class NacosRouteDefinitionRepository extends AbstractRouteDefinitionRepos
     }
 
     @Override
-    public void loadRouteConfig() {
-        addListener();
+    public synchronized void loadRouteConfig() {
+
+        if(started){
+            return;
+        }
+        this.started = true;
+        try {
+            addListener();
+        } catch (NacosException e) {
+            log.error("nacos Route Rule addListener fail", e);
+            this.started = false;
+        }
     }
 
     /**
      * 添加Nacos监听
      */
-    private void addListener() {
-        try {
+    private void addListener() throws NacosException {
 
-            nacosConfigManager.getConfigService().addListener(NACOS_DATA_ID, NACOS_GROUP_ID, new Listener() {
-                @Override
-                public Executor getExecutor() {
-                    return null;
-                }
+        nacosConfigManager.getConfigService().addListener(NACOS_DATA_ID, NACOS_GROUP_ID, new Listener() {
+            @Override
+            public Executor getExecutor() {
+                return null;
+            }
 
-                @Override
-                public void receiveConfigInfo(String configInfo) {
-                    log.info("nacos-Listener-receiveConfigInfo:[{}]", configInfo);
-                    publisher.publishEvent(new RefreshRoutesEvent(this));
-                }
-            });
-        } catch (NacosException e) {
-            log.error("nacos-addListener-error", e);
-        }
+            @Override
+            public void receiveConfigInfo(String configInfo) {
+                log.info("nacos-Listener-receiveConfigInfo:[{}]", configInfo);
+                publisher.publishEvent(new RefreshRoutesEvent(this));
+            }
+        });
+
     }
 
 

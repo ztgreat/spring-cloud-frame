@@ -1,13 +1,23 @@
-
 spring:
+
+  # redis 配置
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+  # mysql 配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud-gateway?useSSL=true&useUnicode=true&zeroDateTimeBehavior=convertToNull&serverTimezone=GMT%2B8
+    username: root
+    password: root
+
+
+  # spring cloud 相关配置
   cloud:
-    #################################
-    #   gateway相关配置
-    #################################
+    # gateway相关配置
     gateway:
-      ################################
       # 配置允许跨域请求
-      ################################
       globalcors:
         cors-configurations:
           '[/**]':
@@ -15,7 +25,7 @@ spring:
             allowedMethods:
               - GET
               - POST
-
+    # sentinel相关配置
     sentinel:
       transport:
         # 配置Sentinel控制台的ip和端口
@@ -25,7 +35,7 @@ spring:
       # 服务启动直接建立心跳连接
       eager: true
 
-      #    路由定义
+      # 路由定义
       routes:
 
         - id: baidu
@@ -49,6 +59,7 @@ spring:
           filters:
             - StripPrefix=1
 
+
 org:
   my:
     jwt:
@@ -66,3 +77,5 @@ management:
     web:
       exposure:
         include: "*"
+
+

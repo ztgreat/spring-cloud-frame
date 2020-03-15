@@ -6,21 +6,27 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * 实体
  */
 @Data
-@TableName("gateway_route")
-public class GatewayMysqlRoute {
+@TableName("gateway_route_predicate")
+public class GatewayMysqlRoutePredicate {
+
 
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    private Integer routeId;
+
     private String serviceId;
 
-    private String uri;
+    private String name;
+
+    private String argsName;
+
+    private String argsValue;
 
     private Integer sort;
 
@@ -35,6 +41,5 @@ public class GatewayMysqlRoute {
     private String remarks;
 
     private Integer dr;
-
 
 }

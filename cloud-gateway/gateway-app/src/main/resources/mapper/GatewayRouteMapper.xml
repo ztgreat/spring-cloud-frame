@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cloud.gateway.mapper.GatewayRouteMapper">
+
+
+    <!--查询所有路由-->
+    <select id="queryAllRoutes" resultType="com.cloud.gateway.domain.DTO.GatewayMysqlRouteDTO">
+        select
+        id,
+        service_id,
+        uri,
+        sort,
+        remarks,
+        created_at,
+        created_by,
+        updated_at,
+        updated_by
+        from gateway_route where dr =0
+    </select>
+
+    <!--获取指定路由的 filter 信息-->
+    <select id="queryRouteFilterByRouteId" resultType="com.cloud.gateway.domain.GatewayMysqlRouteFilter">
+        select
+        id,
+        route_id,
+        service_id,
+        `name`,
+        args_name,
+        args_value,
+        sort,
+        remarks,
+        created_at,
+        created_by,
+        updated_at,
+        updated_by
+        from gateway_route_filter where dr = 0 and route_id = #{routeId}
+    </select>
+
+    <!--获取指定路由的 Predicate 信息-->
+    <select id="queryRoutePredicateByRouteId" resultType="com.cloud.gateway.domain.GatewayMysqlRoutePredicate">
+        select
+        id,
+        route_id,
+        service_id,
+        `name`,
+        args_name,
+        args_value,
+        sort,
+        remarks,
+        created_at,
+        created_by,
+        updated_at,
+        updated_by
+        from gateway_route_predicate where dr = 0 and route_id = #{routeId}
+    </select>
+
+
+</mapper>

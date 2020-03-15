@@ -1,4 +1,4 @@
-package com.cloud.gateway.domain.dto;
+package com.cloud.gateway.domain.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
