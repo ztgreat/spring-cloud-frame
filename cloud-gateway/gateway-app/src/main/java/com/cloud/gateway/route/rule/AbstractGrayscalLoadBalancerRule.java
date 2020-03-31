@@ -1,4 +1,4 @@
-package com.cloud.gateway.route.gray;
+package com.cloud.gateway.route.rule;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
@@ -66,7 +66,7 @@ public abstract class AbstractGrayscalLoadBalancerRule extends ZoneAvoidanceRule
 
         Map<String, List<Instance>> versionMap = new HashMap<>(instances.size());
         instances.forEach(instance -> {
-            String version = instance.getMetadata().get(CommonConstant.GRAY_VERSION);
+            String version = instance.getMetadata().get(CommonConstant.METADATA_VERSION);
             List<Instance> versions = versionMap.get(version);
             if (versions == null) {
                 versions = new ArrayList<>();

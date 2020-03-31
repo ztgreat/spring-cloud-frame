@@ -7,11 +7,16 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * 路由参数
+ *
+ * @author zhangteng
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GrayRouteProperties implements Serializable {
+public class RouteProperties implements Serializable {
     private String version;
     private String serverName;
     private String serverGroup;

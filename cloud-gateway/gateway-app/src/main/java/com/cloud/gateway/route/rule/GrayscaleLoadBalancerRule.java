@@ -1,4 +1,4 @@
-package com.cloud.gateway.route.gray;
+package com.cloud.gateway.route.rule;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
@@ -7,7 +7,7 @@ import com.alibaba.cloud.nacos.ribbon.ExtendBalancer;
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
-import com.cloud.gateway.properties.GrayRouteProperties;
+import com.cloud.gateway.properties.RouteProperties;
 import com.netflix.loadbalancer.Server;
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,18 +34,18 @@ public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule 
     @Override
     public Server choose(Object key) {
 
-        if (!(key instanceof GrayRouteProperties)) {
+        if (!(key instanceof RouteProperties)) {
             return super.choose(key);
         }
         try {
-            GrayRouteProperties grayRouteProperties = (GrayRouteProperties) key;
-            String version = grayRouteProperties.getVersion();
+            RouteProperties routeProperties = (RouteProperties) key;
+            String version = routeProperties.getVersion();
             String clusterName = this.nacosDiscoveryProperties.getClusterName();
             NamingService namingService = this.nacosDiscoveryProperties.namingServiceInstance();
-            List<Instance> instances = namingService.selectInstances(grayRouteProperties.getServerName(), true);
+            List<Instance> instances = namingService.selectInstances(routeProperties.getServerName(), true);
 
             if (CollectionUtil.isEmpty(instances)) {
-                log.warn("no instance in service {}", grayRouteProperties.getServerName());
+                log.warn("no instance in service {}", routeProperties.getServerName());
                 return null;
             } else {
                 List<Instance> instancesToChoose = buildVersion(instances, version);
@@ -56,7 +56,7 @@ public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule 
                     if (!CollectionUtil.isEmpty(sameClusterInstances)) {
                         instancesToChoose = sameClusterInstances;
                     } else {
-                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", grayRouteProperties.getServerName(), clusterName, instances);
+                        log.warn("A cross-cluster call occurs，name = {}, clusterName = {}, instance = {}", routeProperties.getServerName(), clusterName, instances);
                     }
                 }
                 //按nacos权重获取。这个是NacosRule的代码copy 过来 没有自己实现权重随机。这个权重是nacos控制台服务的权重设置

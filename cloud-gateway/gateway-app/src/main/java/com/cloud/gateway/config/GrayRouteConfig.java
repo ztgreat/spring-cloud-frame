@@ -1,6 +1,6 @@
-package com.cloud.gateway.config.gray;
+package com.cloud.gateway.config;
 
-import com.cloud.gateway.route.gray.GrayscaleLoadBalancerRule;
+import com.cloud.gateway.route.rule.GrayscaleLoadBalancerRule;
 import com.netflix.loadbalancer.IRule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
