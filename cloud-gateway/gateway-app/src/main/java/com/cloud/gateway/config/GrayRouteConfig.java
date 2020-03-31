@@ -1,6 +1,6 @@
 package com.cloud.gateway.config;
 
-import com.cloud.gateway.route.rule.GrayscaleLoadBalancerRule;
+import com.cloud.gateway.route.rule.NacosLoadBalancerRule;
 import com.netflix.loadbalancer.IRule;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +17,6 @@ public class GrayRouteConfig {
 
     @Bean
     IRule rule() {
-        return new GrayscaleLoadBalancerRule();
+        return new NacosLoadBalancerRule();
     }
 }

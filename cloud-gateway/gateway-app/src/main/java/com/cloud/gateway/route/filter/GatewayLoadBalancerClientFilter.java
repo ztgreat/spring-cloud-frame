@@ -52,7 +52,7 @@ public class GatewayLoadBalancerClientFilter extends LoadBalancerClientFilter {
      *
      * @return 版本
      */
-    public String getVersion() {
+    protected String getVersion() {
         return "1.0.0";
     }
 

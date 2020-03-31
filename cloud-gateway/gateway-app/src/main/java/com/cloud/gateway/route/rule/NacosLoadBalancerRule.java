@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
  * @author zhangteng
  */
 @Slf4j
-public class GrayscaleLoadBalancerRule extends AbstractGrayscalLoadBalancerRule {
+public class NacosLoadBalancerRule extends AbstractLoadBalancerRule {
 
     @Resource
     private NacosDiscoveryProperties nacosDiscoveryProperties;

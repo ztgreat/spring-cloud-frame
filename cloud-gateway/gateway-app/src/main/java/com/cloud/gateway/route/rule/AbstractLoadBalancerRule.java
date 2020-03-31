@@ -19,7 +19,7 @@ import java.util.*;
  */
 @Slf4j
 @Getter
-public abstract class AbstractGrayscalLoadBalancerRule extends ZoneAvoidanceRule {
+public abstract class AbstractLoadBalancerRule extends ZoneAvoidanceRule {
 
     /**
      * asc 正序 反之desc 倒叙
